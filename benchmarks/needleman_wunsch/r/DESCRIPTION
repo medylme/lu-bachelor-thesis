@@ -1,0 +1,20 @@
+Package: thesisNW
+Type: Package
+Title: Needleman-Wunsch Benchmark Wrapper for Thesis Comparison
+Version: 0.1.0
+Authors@R: person("Thesis", "Author", email = "thesis@example.invalid",
+                  role = c("aut", "cre"))
+Description: Thin wrapper around pwalign::pairwiseAlignment() exposing
+    Needleman-Wunsch global alignment of DNA sequences as a single
+    callable function for use with downstream microbenchmark harnesses.
+License: Artistic-2.0
+Encoding: UTF-8
+Depends: R (>= 4.4)
+Imports:
+    methods,
+    Biostrings (>= 2.78.0),
+    pwalign (>= 1.6.0)
+Suggests:
+    bench (>= 1.1.4)
+biocViews: Alignment, SequenceMatching, Genetics
+RoxygenNote: 7.3.2

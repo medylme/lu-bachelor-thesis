@@ -1,0 +1,17 @@
+Package: thesisTreeTraversal
+Type: Package
+Title: Phylogenetic Tree Traversal Benchmark Wrapper for Thesis Comparison
+Version: 0.1.0
+Authors@R: person("Thesis", "Author", email = "thesis@example.invalid",
+                  role = c("aut", "cre"))
+Description: Thin wrapper around ape::read.tree() and ape::postorder()
+    exposing a single callable function that parses a Newick string and
+    runs a postorder traversal accumulating basic tree statistics.
+License: GPL-3
+Encoding: UTF-8
+Depends: R (>= 4.0)
+Imports:
+    ape (>= 5.8-1)
+Suggests:
+    bench (>= 1.1.4)
+RoxygenNote: 7.3.2

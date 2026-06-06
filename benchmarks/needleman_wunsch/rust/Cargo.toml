@@ -1,0 +1,29 @@
+[package]
+name = "needleman_wunsch"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.86"
+license = "MIT"
+description = "Thesis benchmark: Needleman-Wunsch global alignment via rust-bio."
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+bio = "3"
+
+[dev-dependencies]
+criterion = { version = "0.8", features = ["html_reports"] }
+dhat = "0.3"
+
+[profile.release]
+debug = 1
+lto = "fat"
+codegen-units = 1
+
+[[bench]]
+name = "bench"
+harness = false
+
+[[example]]
+name = "mem"

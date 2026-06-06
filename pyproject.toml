@@ -1,0 +1,20 @@
+[project]
+name = "thesis-orchestrator"
+version = "0.1.0"
+description = "Benchmark orchestrator for the Rust/C++/R thesis comparison."
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.2",
+    "pyarrow>=15",
+]
+
+[project.scripts]
+run-benchmarks = "orchestrator.run_benchmarks:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["orchestrator*"]

@@ -1,0 +1,40 @@
+[workspace]
+name = "lu-bachelor-thesis-rust-cpp-r-benchmark-suite"
+description = "Bachelor thesis - Rust vs C++ vs R bioinformatics benchmark suite"
+channels = ["conda-forge", "bioconda"]
+platforms = ["linux-64"]
+
+[dependencies]
+# R interpreter and benchmarking
+r-base = ">=4.4,<5"
+r-bench = ">=1.1.4"
+r-ape = ">=5.8"
+
+# Bioconductor 3.22 packages (used by needleman_wunsch/r/nw.R)
+bioconductor-biostrings = ">=2.78"
+bioconductor-pwalign = ">=1.6"
+
+# Rust toolchain (project MSRV is 1.86; see LEARNINGS.md §2.1)
+rust = ">=1.86"
+
+# Python orchestrator (see orchestrator/run_benchmarks.py)
+python = ">=3.10"
+pandas = ">=2.2"
+pyarrow = ">=15"
+
+# Build tooling
+cmake = ">=3.20"
+make = "*"
+git = "*"
+
+[tasks]
+build       = { cmd = "make build",       description = "Compile all Rust crates and C++ targets" }
+build-rust  = { cmd = "make build-rust",  description = "Compile Rust crates only" }
+build-cpp   = { cmd = "make build-cpp",   description = "Compile C++ targets only" }
+bench       = { cmd = "make bench",       description = "Run all benchmarks and write results/results.csv" }
+bench-rust  = { cmd = "make bench-rust",  description = "Run Rust benchmarks only" }
+bench-cpp   = { cmd = "make bench-cpp",   description = "Run C++ benchmarks only" }
+bench-r     = { cmd = "make bench-r",     description = "Run R benchmarks only" }
+bench-mem   = { cmd = "make bench-mem",   description = "Run memory measurement only (skip timing)" }
+clean       = { cmd = "make clean",       description = "Remove build artefacts (keeps results/)" }
+versions = { cmd = "bash -c 'rustc --version && cargo --version && cmake --version | head -n1 && ${CXX:-c++} --version | head -n1 && python --version && Rscript -e \"R.version\\$version.string\" && pixi list | grep -E \"^(r-bench|r-ape|bioconductor-biostrings|bioconductor-pwalign|pandas|pyarrow)\\s\"'", description = "Print pinned tool versions for the Methods section" }
